@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<targets>
+
+    <URL>http://es.wikipedia.org</URL>
+    <URL>http://amazon.com</URL>
+    <URL>http://nacion.com</URL>
+    <URL>http://google.com</URL>
+    
+</targets>    
