@@ -1,0 +1,67 @@
+/**
+ *
+ * @author Uriel Gomez
+ * @author Juan Pablo Cubero
+ */
+
+import java.io.IOException;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.SAXException;
+
+
+
+/**
+ *
+ * Este codigo tiene la funcion de leer un archivo XML previamente creado, para
+ * utilizarlo en el SpiderBot.
+ * 
+ */
+public class XMLReader {
+    
+    public static void main (String [] args){
+        
+        DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
+        try{
+            DocumentBuilder dBuilder = builderFactory.newDocumentBuilder();
+            Document document = dBuilder.parse(XMLReader.class.getResourceAsStream("URLs.xml"));
+            document.normalize();
+            
+            NodeList rootNodes = document.getElementsByTagName("targets");
+            Node rootNode = rootNodes.item(0);
+            Element rootElement = (Element) rootNode;
+            NodeList urlList = rootElement.getElementsByTagName("URL");
+            
+            for(int i = 0; i < urlList.getLength(); i++){
+                Node theURL = urlList.item(i);
+                Element urlElement = (Element) theURL;
+                System.out.println(urlElement);
+            }
+            
+                    
+                    
+                    
+                    
+        }
+        catch (ParserConfigurationException e){
+            e.printStackTrace();
+        }
+        catch (SAXException e){
+            e.printStackTrace();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+       
+        
+        
+    }
+    
+    
+    
+}
