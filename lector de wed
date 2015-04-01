@@ -1,0 +1,58 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.net.*;
+import java.io.*;
+
+
+public class LectorWed extends JFrame {
+     JTextArea caja= new JTextArea("Obteniendo datos..");
+     
+     public LectorWed(){
+         super("navegador");
+         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+         setSize(600, 300);
+         JScrollPane panel= new JScrollPane(caja);
+         add(panel);
+         setVisible(true);
+         
+     }
+     void obtenertDatos(String direccion) throws MalformedURLException{
+         
+         setTitle(direccion);
+         URL pagina= new URL(direccion);
+         StringBuffer texto= new StringBuffer();
+         try {
+             
+             HttpURLConnection con =  (HttpURLConnection) pagina.openConnection();
+                con.connect();
+             InputStreamReader in = new InputStreamReader((InputStream) con.getContent());
+             BufferedReader buff= new BufferedReader(in);
+             caja.setText("Obteniendo datos...");
+             String linea;
+             
+             do{
+                 linea = buff.readLine();
+                 texto.append(linea +"\n");
+             }
+             while (linea != null);
+                caja.setText(texto.toString());
+            
+         } catch (Exception e) {
+             System.out.println("IO Error:" + e.getMessage());
+         }
+     }
+     public static void main (String[] argumento){
+         if ( argumento.length < 1){
+             System.out.println("Uso: url java LectroWedReader");
+             System.exit(1);
+         }
+         try {
+             LectorWed apli= new LectorWed();
+             apli.obtenertDatos(argumento[0]);
+             
+         } catch (MalformedURLException mue) {
+             System.out.println("URL incorrecto: "+ argumento[0]);
+         }
+     }
+}
