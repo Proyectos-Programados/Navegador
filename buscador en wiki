@@ -25,14 +25,14 @@ public class NewJFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
-
+        //le da nombre a los componentes de la ventana
         Boton = new javax.swing.JButton();
         Entrada = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         espacioLabel = new javax.swing.JEditorPane();
-
+        //para que cierre al darle en la x 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
+        //le agrega un texto al boton y le da la accion que debe realizar
         Boton.setText("Buscar");
         Boton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,13 +71,14 @@ public class NewJFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>                        
-
+    // Acción que realiza el boton al ser precionado
     private void BotonActionPerformed(java.awt.event.ActionEvent evt) {                                      
         
-        String dato;
-        dato= this.Entrada.getText();
+        String dato;//crea una variable string
+        // se encierra en try catch por si hay algun error
+        dato= this.Entrada.getText();//define el valor de la  variable 
         try {
-            obtenertDatos(dato);
+            obtenertDatos(dato);// llama la clase obtenerDato
         } catch (MalformedURLException ex) {
             Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -125,16 +126,17 @@ public class NewJFrame extends javax.swing.JFrame {
    
    
    public void obtenertDatos(String direccion) throws MalformedURLException, IOException{
-        String url= "https://es.wikipedia.org/wiki/";
-        URL buscar= new URL(url+direccion);
-        espacioLabel.setEditable(false);
-        this.link();
-        espacioLabel.setPage(buscar);
+        String url= "https://es.wikipedia.org/wiki/";//dirección para usar en el buscador
+        URL buscar= new URL(url+direccion);//se le agrega la palabra al a la URL y se convierte en un URL para el JEditor
+        espacioLabel.setEditable(false);//que no se pueda editar el tamaño del JEditor
+        this.link();//llama la clase link
+        espacioLabel.setPage(buscar);//le da la direccion que quieres buscar
         
    
         
        
      }
+     //clase que identifica los link que estan dentro de la pagina 
     public void  link(){
         espacioLabel.addHyperlinkListener(new HyperlinkListener() {
 
@@ -142,7 +144,7 @@ public class NewJFrame extends javax.swing.JFrame {
             public void hyperlinkUpdate(HyperlinkEvent he) {
                 if(he.getEventType()==HyperlinkEvent.EventType.ACTIVATED)
                     try {
-                        espacioLabel.setPage(he.getURL());
+                        espacioLabel.setPage(he.getURL());//si es link le da lo convierte en link disponible
                 } catch (IOException ex) {
                     Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
