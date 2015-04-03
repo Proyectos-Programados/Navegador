@@ -1,20 +1,15 @@
+
 package XMLWriter;
 
 import java.io.File; // Class that will represent a system file name
 
 import java.io.FileOutputStream; // Used to write data to a file
 
-import java.io.IOException;// Triggered when an I/O error occurs
-
 import org.jdom2.Document;// Represents your XML document and contains useful methods
 
 import org.jdom2.Element;// Represents XML elements and contains useful methods
 
-import org.jdom2.JDOMException;// Top level JDOM exception
-
 import org.jdom2.Text;// Represents text used with JDOM
-
-import org.jdom2.input.SAXBuilder;// Creates a JDOM document parsed using SAX Simple API for XML
 
 import org.jdom2.output.Format;// Formats how the XML document will look
 
@@ -23,6 +18,7 @@ import org.jdom2.output.XMLOutputter;// Outputs the JDOM document to a file
 /**
  *
  * @author Juan Pablo Cubero
+ * Initializes an XML document.
  */
 public class XMLWriter {
 
@@ -30,7 +26,9 @@ public class XMLWriter {
     writeXML();
   // readXML();
 }
-
+/**
+ * Introduces the name of the parts of the new XML file, and add them to it.
+ */
 private static void writeXML(){
     try{
     Document doc = new Document();
@@ -65,5 +63,6 @@ private static void writeXML(){
     ex.printStackTrace();
         
     }
+    
     }
 }
