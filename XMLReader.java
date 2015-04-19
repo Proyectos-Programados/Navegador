@@ -35,7 +35,7 @@ public class XMLReader {
 		readXML();
 	}
 	
-	private static void readXML(){
+	public static void readXML(){
 		
 		SAXBuilder builder = new SAXBuilder();
 		try {
@@ -43,12 +43,14 @@ public class XMLReader {
 			/**
                          * Parses the file supplied into a JDOM document
 			*/
-			Document readDoc = builder.build(new File("C:\\Users\\Juan Pablo Cubero\\Desktop\\Datos I Nereo\\Proyectos\\I Proyecto (SpiderBot y Engine)\\SpiderBot\\URLs.xml"));
+			Document readDoc = builder.build(new File("C:\\SpiderBot\\URLs.xml"));
 						
 			/**
                          * Gets the text found between the name tags
 			*/
-			System.out.println("URL1: " + readDoc.getRootElement().getChildText("URL1"));
+                        System.out.println("---URLs sin lista---");
+			
+                        System.out.println("URL1: " + readDoc.getRootElement().getChildText("URL1"));
 			System.out.println("URL2: " + readDoc.getRootElement().getChildText("URL2"));
 			System.out.println("URL3: " + readDoc.getRootElement().getChildText("URL3"));
 			System.out.println("URL4: " + readDoc.getRootElement().getChildText("URL4"));
@@ -65,7 +67,7 @@ public class XMLReader {
 			
                         Element root = readDoc.getRootElement();
 			
-                        System.out.println("Esto es de la lista con los URL");
+                        System.out.println("***Esto es de la lista con los URL***");
                         System.out.println("\n");
 		
 			
@@ -88,16 +90,27 @@ public class XMLReader {
 			/**
                          * Parses the file supplied into a JDOM document
 			*/
-			Document readDoc = builder.build(new File("C:\\Users\\Juan Pablo Cubero\\Desktop\\Datos I Nereo\\Proyectos\\I Proyecto (SpiderBot y Engine)\\SpiderBot\\Configurations.xml"));
+			Document readDoc = builder.build(new File("C:\\SpiderBot\\Configurations.xml"));
 						
 			/**
                          * Gets the text found between the name tags
 			*/
-			System.out.println("maxthreads: " + readDoc.getRootElement().getChildText("maxthreads"));
+                        System.out.println("---Configuraciones sin lista---");
+
+                        System.out.println("maxthreads: " + readDoc.getRootElement().getChildText("maxthreads"));
 			System.out.println("recursivity: " + readDoc.getRootElement().getChildText("recursivity"));
 			System.out.println("reindex: " + readDoc.getRootElement().getChildText("reindex"));
 			
-			Element root = readDoc.getRootElement();
+                        String listaConfig[] = {readDoc.getRootElement().getChildText("maxthreads"),readDoc.getRootElement().getChildText("recursivity"),readDoc.getRootElement().getChildText("reindex")};
+                        
+                        System.out.println("***Esta es la lista con las configuraciones***");
+
+                        for (int x=0; x<listaConfig.length;x++)
+                        System.out.println(listaConfig[x]);
+                        
+                        
+                        
+                        Element root = readDoc.getRootElement();
 			
 		
 			
@@ -117,4 +130,3 @@ public class XMLReader {
         }
 	
 }
-
