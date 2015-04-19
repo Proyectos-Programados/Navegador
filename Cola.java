@@ -48,17 +48,20 @@ public class Cola {
 			/**
                          * Parses the file supplied into a JDOM document
 			*/
-			Document readDoc = builder.build(new File("C:\\Users\\Juan Pablo Cubero\\Desktop\\Datos I Nereo\\Proyectos\\I Proyecto (SpiderBot y Engine)\\SpiderBot\\URLs.xml"));
+			Document readDoc = builder.build(new File("C:\\SpiderBot\\URLs.xml"));
 
                         /**
                          * Creates a list with the first URLs to analyze
                         */
                         String lista[] = {readDoc.getRootElement().getChildText("URL1"),readDoc.getRootElement().getChildText("URL2"),readDoc.getRootElement().getChildText("URL3"),readDoc.getRootElement().getChildText("URL4")};
                         
+                        System.out.println("Esta es la lista de URL para insertar en cola");
                         
-                        for (int x=0; x<lista.length;x++)
-                        System.out.println(lista[x]);
-                        System.out.println("Esto es de la lista con los URL");
+                        for (int x=0; x<lista.length;x++){
+                            System.out.println(lista[x]);
+                        }
+                        System.out.println("\n");
+                        
 
                         /**
                          * Creates a queue with the  first URLs
@@ -69,9 +72,10 @@ public class Cola {
                         cola.offer(lista[i]);
                         ID = 0;
                         }
+                        
+                        System.out.println("Esta es la Cola con los URL a procesar");
                         System.out.println(cola);
-                        System.out.println("Lo de arriba es de la cola");
-
+                        
                         Element root = readDoc.getRootElement();
                         Copia = cola;
 			
@@ -86,8 +90,4 @@ public class Cola {
 		} 
         }
 }
-class h{
-    public static void main(String[] args){
-        System.out.println(Cola.Copia.getFirst());
-    }
-}
+
